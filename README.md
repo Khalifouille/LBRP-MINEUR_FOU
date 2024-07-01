@@ -31,3 +31,7 @@ Le bloc `if __name__ == "__main__":` est le point d'entrée du script. Il effect
 ## Compatibilité
 
 Ce script est spécialement conçu pour fonctionner sur les serveurs Garry's Mod qui utilisent le script Zero's Gold Digger 🐔 (Gold Script).
+
+## Exécution en arrière-plan
+
+Le script peut tourner en arrière-plan sans nuire à votre activité en premier plan. Vous pouvez continuer à utiliser votre ordinateur normalement pendant que le script simule les clics dans la fenêtre ciblée.
