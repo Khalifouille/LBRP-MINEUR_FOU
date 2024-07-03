@@ -35,3 +35,10 @@ Ce script est spécialement conçu pour fonctionner sur les serveurs Garry's Mod
 ## Exécution en arrière-plan
 
 Le script peut tourner en arrière-plan sans nuire à votre activité en premier plan. Vous pouvez continuer à utiliser votre ordinateur normalement pendant que le script simule les clics dans la fenêtre ciblée.
+
+## MISE AJOUR DU 04.07.2024
+
+- Ajout d'une recherche automatique d'image lorsque le seau est remplit
+- Arrêt du script lorsque le seau plein
+- Retrait du lancement en arriére plan du script
+- Ajout des images à recherhcer dans le dossier "gmod_lbrp"
