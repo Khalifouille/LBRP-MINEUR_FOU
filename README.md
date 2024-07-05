@@ -36,9 +36,16 @@ Ce script est spécialement conçu pour fonctionner sur les serveurs Garry's Mod
 
 Le script peut tourner en arrière-plan sans nuire à votre activité en premier plan. Vous pouvez continuer à utiliser votre ordinateur normalement pendant que le script simule les clics dans la fenêtre ciblée.
 
-## MISE AJOUR DU 04.07.2024
+## MISE A JOUR DU 04.07.2024
 
 - Ajout d'une recherche automatique d'image lorsque le seau est remplit
 - Arrêt du script lorsque le seau plein
 - Retrait du lancement en arriére plan du script
 - Ajout des images à recherhcer dans le dossier "gmod_lbrp"
+
+## MISE A JOUR DU 05.07.2024
+
+- Création de la bibliothéque Windows Capture
+- Changement de la façon de detection des objets, utilisation de labibliothéque OpenCV
+- Pouvoir prévisualiser la facon dont l'objet est detecter par un rectangle vert
+- Modification des images
