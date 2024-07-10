@@ -49,3 +49,11 @@ Le script peut tourner en arrière-plan sans nuire à votre activité en premier
 - Changement de la façon de detection des objets, utilisation de labibliothéque OpenCV
 - Pouvoir prévisualiser la facon dont l'objet est detecter par un rectangle vert
 - Modification des images
+
+## MISE A JOUR DU 10.07.2024
+
+- Modificaftion compléte du code de A à Z
+- Ajout de l'IA Training
+- Utilisation de YOLO pour mon projet de reconnaissance
+- Prévisualisation en temps réel du taux de reconnaissance + le nom de l'objet
+- Changement en cours pour automatiser les mouvements sur Garry's Mod (x64) `Tellement dûr d'automatiser les mouvements X Y avec leur sécurité`
