@@ -57,3 +57,7 @@ Le script peut tourner en arrière-plan sans nuire à votre activité en premier
 - Utilisation de YOLO pour mon projet de reconnaissance
 - Prévisualisation en temps réel du taux de reconnaissance + le nom de l'objet
 - Changement en cours pour automatiser les mouvements sur Garry's Mod (x64) `Tellement dûr d'automatiser les mouvements X Y avec leur sécurité`
+
+## MISE A JOUR DU 15.07.2024
+
+- Ajout de quelques lignes de code afin de déplacer le seau jusqu'à la laveuse
