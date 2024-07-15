@@ -156,38 +156,88 @@ class ImageProcessor:
         cv.imshow('DETECTED OBJECTS', img)
 
 
+from pynput.mouse import Button, Controller
+
 mouse = Controller()
 
-sleep(4)
-
-window_name = "Garry's Mod (x64)"
+window_name = "BlueStacks App Player"
 cfg_file_name = "./yolov4-tiny/yolov4-tiny-custom.cfg"
 weights_file_name = "yolov4-tiny-custom_last.weights"
 
 wincap = WindowCapture(window_name)
 improc = ImageProcessor(wincap.get_window_size(), cfg_file_name, weights_file_name)
 
-while True:
+screen_height = 560
+border_pixels = 8
+titlebar_pixels = 33
+velocity_multiplyer = 2
+
+previous_coordinates = []
+new_coordinates = []
+
+sleep(4)
+
+while (True):
 
     ss = wincap.get_screenshot()
+    previous_coordinates = improc.proccess_image(ss)
+    previous_coordinates = [c for c in previous_coordinates if c["class_name"] == "fruit"]
+
+    ss = wincap.get_screenshot()
+    new_coordinates = improc.proccess_image(ss)
+    new_coordinates = [c for c in new_coordinates if c["class_name"] == "fruit"]
 
     if cv.waitKey(1) == ord('q'):
         cv.destroyAllWindows()
         break
 
-    coordinates = improc.proccess_image(ss)
-
-    coordinates = [c for c in coordinates if c["class_name"] == "Seau vide"]
-
-    if len(coordinates) == 0:
+    if len(previous_coordinates) == 0 or len(new_coordinates) == 0:
         continue
 
-    seau_a_clique = coordinates[0]
+    coordinates_to_hit = []
 
-    mouse.position = (seau_a_clique['x'], seau_a_clique['y'])
+    for new_fruit in new_coordinates:
+        center_x = new_fruit['x'] + (new_fruit['w'] // 2) + border_pixels
+        center_y = new_fruit['y'] + (new_fruit['h'] // 2) + titlebar_pixels
+        for previous_fruit in previous_coordinates:
+            if not previous_fruit['x'] < center_x < (previous_fruit['x'] + previous_fruit['w']):
+                continue
+            if not previous_fruit['y'] < center_y < (previous_fruit['y'] + previous_fruit['h']):
+                continue
+            previous_center_x = previous_fruit['x'] + (previous_fruit['w'] // 2) + border_pixels
+            previous_center_y = previous_fruit['y'] + (previous_fruit['h'] // 2) + titlebar_pixels
+            coordinates_to_hit.append({
+                "x": center_x + (center_x - previous_center_x) * velocity_multiplyer,
+                "y": center_y + (center_y - previous_center_y) * velocity_multiplyer
+            })
+            break
+
+    if len(coordinates_to_hit) == 0:
+        continue
+
+    if len(coordinates_to_hit) == 1:
+        coordinates_to_hit = coordinates_to_hit[0]
+
+        initial_x = coordinates_to_hit["x"]
+        initial_y = min(screen_height, coordinates_to_hit["y"]) - 70
+        movement_x = 0
+        movement_y = 140
+
+    else:
+        leftmost_fruit = min(coordinates_to_hit, key=lambda x: x['x'])
+        rightmost_fruit = max(coordinates_to_hit, key=lambda x: x['x'])
+
+        initial_x = max(30, leftmost_fruit["x"])
+        initial_y = max(100, leftmost_fruit["y"])
+        movement_x = rightmost_fruit["x"] - initial_x
+        movement_y = rightmost_fruit["y"] - initial_y
+
+    mouse.position = (initial_x, initial_y)
     mouse.press(Button.left)
     sleep(0.05)
-    mouse.move(seau_a_clique['w'], seau_a_clique['h'])
+    mouse.move(movement_x, movement_y)
+    sleep(0.05)
+    mouse.move(-movement_x, -movement_y)
     sleep(0.05)
     mouse.release(Button.left)
 
