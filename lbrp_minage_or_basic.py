@@ -185,18 +185,12 @@ while True:
 
     seau_a_clique = coordinates[0]
 
-    # Clic gauche sur le seau
     mouse.position = (seau_a_clique['x'], seau_a_clique['y'])
-    mouse.press(Button.left)
+    mouse.press(Button.right)
     sleep(0.05)
     mouse.move(seau_a_clique['w'], seau_a_clique['h'])
     sleep(0.05)
-    mouse.release(Button.left)
-
-    # Déplacement de la souris à la position cible et clic droit
     mouse.position = (target_x, target_y)
-    sleep(0.1)
-    mouse.press(Button.right)
     sleep(0.1)
     mouse.release(Button.right)
 
